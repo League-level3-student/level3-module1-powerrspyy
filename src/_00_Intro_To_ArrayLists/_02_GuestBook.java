@@ -2,9 +2,11 @@ package _00_Intro_To_ArrayLists;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class _02_GuestBook implements ActionListener {
@@ -24,7 +26,7 @@ public class _02_GuestBook implements ActionListener {
 	JFrame frame = new JFrame("GuestBook");
 	JButton addName = new JButton("Add Name");
 	JButton viewNames = new JButton("View Names");
-	
+	ArrayList<String> names = new ArrayList<String>();
 	public static void main(String[] args) {
 		_02_GuestBook guestBook = new _02_GuestBook();
 		guestBook.buildGUI();
@@ -55,7 +57,14 @@ public class _02_GuestBook implements ActionListener {
 	public  void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == addName) {
-			
+			names.add(JOptionPane.showInputDialog("Enter a name"));
+		}
+		else if(e.getSource() == viewNames) {
+			String nameStr = "";
+			for(int i = 0; i < names.size(); i++) {
+				nameStr += "Guest #" + String.valueOf( (i+1)) + " " + names.get(i) + "\n";
+			}
+			JOptionPane.showMessageDialog(frame, nameStr);
 		}
 	}
 	
