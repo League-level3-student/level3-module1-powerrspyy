@@ -23,11 +23,13 @@ public class Card extends JButton {
     private boolean matched = false;
     private String faceUpImageFilename = null;
     private ImageIcon faceUpIcon = null;
-    private static String faceDownImageFilename = cardImagesPath + "B1.png";
+
+	private static String faceDownImageFilename = cardImagesPath + "B1.png";
     public static ImageIcon faceDownIcon = null;;
 
     public Card( int value ) {
         this.value = value;
+        faceUpImageFilename = cardImagesPath + value + ".png";
         setup();
     }
     
@@ -123,6 +125,6 @@ public class Card extends JButton {
         if( this.faceUpIcon == null ) {
             return this.getValue() == otherCard.getValue();
         }
-        return (this.getValue() / 4) == (otherCard.getValue() / 4);
+        return ((this.getValue()-1) / 4) == ((otherCard.getValue()-1) / 4);
     }
 }
