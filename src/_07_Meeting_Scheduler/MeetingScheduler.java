@@ -26,9 +26,15 @@ public class MeetingScheduler {
      */
     public static Schedule getMutualAvailability(Schedule person1, Schedule person2) {
         
+    	Schedule availabilities = new Schedule();
+    	
         for(Entry<String, ArrayList<Integer>> e: person1.getSchedule().entrySet()) {
-        	break;
+        	for(Integer i: e.getValue()) {
+        		if(person2.getSchedule().get(e.getKey()).contains(i)) {
+        			availabilities.addAvailability(e.getKey(), i);
+        		}
+        	}
         }
-		return person2;
+		return availabilities;
     }
 }
